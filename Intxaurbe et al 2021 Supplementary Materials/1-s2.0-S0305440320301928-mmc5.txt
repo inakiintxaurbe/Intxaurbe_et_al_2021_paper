@@ -1,0 +1,66 @@
+#CaveArtAccessibility script for ArcGis®:
+A calculator to measure the difficulty values (1/travel rate (in meteres per second)) 
+from a starting point (e.g. a paleoentrance) to different destination points (e.g. rock art, 
+archeological evidences) inside a cave.
+
+You must create a folder named as "CaveArtAccessibility" in the C module, like this: "C:\CaveArtAccessibility"
+
+Then, you need to introduce in the folder "CaveArtAccessibility" the 3D model for the Grounds, 
+named as "GroundOK.wrl" (modified to show their original state in the Paleolithic) 
+and ceilings, named as "CeilingsMax.wrl" (if you have other Z values which affects in the caving, 
+you can enter these minimum values also named as "CeilingsMin.wrl"; if not, enter again the ceilings 
+3D model, but naming this second file as "CeilingsMin.wrl"). Also, enter (a) destination point(s) and 
+start points as shapefile files. They must be named as "Start.shp" and "Destination.shp".
+
+¡¡¡¡¡¡¡IMPORTANT!!!!!!!
+INTRODUCE THE SCRIPT IN THE SAME FOLDER LIKE C:\CaveArtAccessibility\yjasc_105271_CaveArtAccessibility_mmc6.py
+YOU MUST MODIFY IT WITH NEMO PAD TO INTRODUCE THE FOLLOWING:
+IN THE LINES 53, 59, 66, 73, 145 and 207 THE COORDINATES DATUM OF YOUR INTEREST, like the following:
+(in the line 53):
+		  								[INTRODUCE YOUR DATUM HERE]
+		            								|
+			    								|
+			   							       \|/
+arcpy.Import3DFiles_3d(GroundOK_wrl, GroundOK_shp, "ONE_ROOT_ONE_FEATURE", "PROJCS['ETRS_1989_ETRS-TM30',GEOGCS['GCS_ETRS_1989',DATUM['D_ETRS_1989',SPHEROID['GRS_1980',6378137.0,298.257222101]],PRIMEM['Greenwich',0.0],UNIT['Degree',0.0174532925199433]],PROJECTION['Transverse_Mercator'],PARAMETER['False_Easting',500000.0],PARAMETER['False_Northing',0.0],PARAMETER['Central_Meridian',-3.0],PARAMETER['Scale_Factor',0.9996],PARAMETER['Latitude_Of_Origin',0.0],UNIT['Meter',1.0]];-5120900 -9998100 10000;-100000 10000;-100000 10000;0,001;0,001;0,001;IsHighPrecision", "Z_IS_UP", "*", "", "")
+
+(in the line 59)
+		  								[INTRODUCE YOUR DATUM HERE]
+		            								|
+			    								|
+			   							       \|/
+arcpy.Import3DFiles_3d(CeilingsMax_wrl, CeilingsMax_shp, "ONE_ROOT_ONE_FEATURE", "PROJCS['ETRS_1989_ETRS-TM30',GEOGCS['GCS_ETRS_1989',DATUM['D_ETRS_1989',SPHEROID['GRS_1980',6378137.0,298.257222101]],PRIMEM['Greenwich',0.0],UNIT['Degree',0.0174532925199433]],PROJECTION['Transverse_Mercator'],PARAMETER['False_Easting',500000.0],PARAMETER['False_Northing',0.0],PARAMETER['Central_Meridian',-3.0],PARAMETER['Scale_Factor',0.9996],PARAMETER['Latitude_Of_Origin',0.0],UNIT['Meter',1.0]];-5120900 -9998100 10000;-100000 10000;-100000 10000;0,001;0,001;0,001;IsHighPrecision", "Z_IS_UP", "*", "", "")
+
+(in the line 66)
+		  								[INTRODUCE YOUR DATUM HERE]
+		            								|
+			    								|
+			   							       \|/
+arcpy.Import3DFiles_3d(CeilingsMin_wrl, CeilingsMin_shp, "ONE_ROOT_ONE_FEATURE", "PROJCS['ETRS_1989_ETRS-TM30',GEOGCS['GCS_ETRS_1989',DATUM['D_ETRS_1989',SPHEROID['GRS_1980',6378137.0,298.257222101]],PRIMEM['Greenwich',0.0],UNIT['Degree',0.0174532925199433]],PROJECTION['Transverse_Mercator'],PARAMETER['False_Easting',500000.0],PARAMETER['False_Northing',0.0],PARAMETER['Central_Meridian',-3.0],PARAMETER['Scale_Factor',0.9996],PARAMETER['Latitude_Of_Origin',0.0],UNIT['Meter',1.0]];-5120900 -9998100 10000;-100000 10000;-100000 10000;0,001;0,001;0,001;IsHighPrecision", "Z_IS_UP", "*", "", "")
+
+(in the line 73)
+		  								[INTRODUCE YOUR DATUM HERE]
+		            								|
+			    								|
+			   							       \|/
+                                   "CeilingsOK.tif", "PROJCS['ETRS_1989_ETRS-TM30',GEOGCS['GCS_ETRS_1989',DATUM['D_ETRS_1989',SPHEROID['GRS_1980',6378137.0,298.257222101]],PRIMEM['Greenwich',0.0],UNIT['Degree',0.0174532925199433]],PROJECTION['Transverse_Mercator'],PARAMETER['False_Easting',500000.0],PARAMETER['False_Northing',0.0],PARAMETER['Central_Meridian',-3.0],PARAMETER['Scale_Factor',0.9996],PARAMETER['Latitude_Of_Origin',0.0],UNIT['Meter',1.0]]",\
+
+(in the line 145)
+		  								[INTRODUCE YOUR DATUM HERE]
+		            								|
+			    								|
+			   							       \|/
+                                   "CostOK.tif", "PROJCS['ETRS_1989_ETRS-TM30',GEOGCS['GCS_ETRS_1989',DATUM['D_ETRS_1989',SPHEROID['GRS_1980',6378137.0,298.257222101]],PRIMEM['Greenwich',0.0],UNIT['Degree',0.0174532925199433]],PROJECTION['Transverse_Mercator'],PARAMETER['False_Easting',500000.0],PARAMETER['False_Northing',0.0],PARAMETER['Central_Meridian',-3.0],PARAMETER['Scale_Factor',0.9996],PARAMETER['Latitude_Of_Origin',0.0],UNIT['Meter',1.0]]",\
+
+(in the line 207)
+		  								[INTRODUCE YOUR DATUM HERE]
+		            								|
+			    								|
+			   							       \|/
+                                   "Seconds.tif", "PROJCS['ETRS_1989_ETRS-TM30',GEOGCS['GCS_ETRS_1989',DATUM['D_ETRS_1989',SPHEROID['GRS_1980',6378137.0,298.257222101]],PRIMEM['Greenwich',0.0],UNIT['Degree',0.0174532925199433]],PROJECTION['Transverse_Mercator'],PARAMETER['False_Easting',500000.0],PARAMETER['False_Northing',0.0],PARAMETER['Central_Meridian',-3.0],PARAMETER['Scale_Factor',0.9996],PARAMETER['Latitude_Of_Origin',0.0],UNIT['Meter',1.0]]",\
+
+Introduce your script in your ArcGis® software (e.g. ArcMap®, ArcScene®, etc.), and execute it 
+(you must not introduce anything else).
+
+The cost values, cost distance (showing the cumulated cost), LCP (with the cost path value), 
+the estimated needed time to reach the sectors and other values (height of galleries, slope, etc.) 
+are going to be created in the same folder.
